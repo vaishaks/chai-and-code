@@ -1,0 +1,11 @@
+.env
+tracks/*.mp3
+logs/
+now_playing.txt
+*.pid
+video/frames_*/
+artwork/imagine-*-0.jpg
+artwork/imagine-*-1.jpg
+artwork/imagine-*-2.jpg
+artwork/*.json
+video/golden_animation_hd.mp4

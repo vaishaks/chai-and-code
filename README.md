@@ -20,12 +20,11 @@ ffmpeg (muxes video loop + piped audio → RTMP)
 
 ## Setup
 
-1. **Add your music** — Drop `.mp3` files into `tracks/` and update `tracks/playlist.json`:
-   ```json
-   [
-     {"title": "Track Name", "artist": "Artist", "filename": "file.mp3"}
-   ]
+1. **Download music** — Run the download script to fetch all 72 royalty-free tracks:
+   ```bash
+   bash download_tracks.sh
    ```
+   HoliznaCC0 tracks (CC0) are downloaded automatically from Free Music Archive. Pixabay tracks need manual download — the script prints direct links for each. You can also add your own tracks to `tracks/` and update `tracks/playlist.json`.
 
 2. **Set your stream key** — Copy `.env.example` to `.env` and add your YouTube RTMP URL:
    ```
@@ -53,16 +52,17 @@ ffmpeg (muxes video loop + piped audio → RTMP)
 ## File Structure
 
 ```
-├── stream.sh          # Main stream launcher
-├── watchdog.sh        # Auto-restart watchdog
-├── dj_engine.py       # Auto-DJ engine
+├── stream.sh            # Main stream launcher
+├── watchdog.sh          # Auto-restart watchdog
+├── dj_engine.py         # Auto-DJ engine
+├── download_tracks.sh   # Music downloader
 ├── tracks/
-│   ├── playlist.json  # Track metadata
-│   └── *.mp3          # Music files (not included)
+│   ├── playlist.json    # Track metadata + source URLs
+│   └── *.mp3            # Music files (not included)
 ├── video/
-│   └── branded_loop.mp4  # Video loop
-├── artwork/           # Source artwork
-└── logs/              # Runtime logs
+│   └── branded_loop.mp4 # Video loop
+├── artwork/             # Source artwork
+└── logs/                # Runtime logs
 ```
 
 ## How it works
@@ -73,7 +73,7 @@ ffmpeg (muxes video loop + piped audio → RTMP)
 
 ## Music
 
-Tracks are not included in this repo. The stream uses royalty-free music from:
+Tracks are not included in this repo. Run `bash download_tracks.sh` to fetch them. Each track in `tracks/playlist.json` includes source URLs and license info. The stream uses royalty-free music from:
 - [HoliznaCC0](https://freemusicarchive.org/music/holiznacc0) (CC0 Public Domain)
 - [Pixabay Music](https://pixabay.com/music/) (Royalty-free)
 
